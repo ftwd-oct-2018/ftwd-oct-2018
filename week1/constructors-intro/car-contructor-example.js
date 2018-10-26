@@ -24,7 +24,9 @@
   //     console.log("yay I'm driving");
   //   }
   // }
-  
+   
+  // ^ this is syntax for making an actual object, but what if we want to make objects with similar structures?
+  // we need to use classes/constructor functions
 
 
 
@@ -83,7 +85,7 @@ class Car{
   
   
   
-
+// lets take a look at how classes can inherit functions and attrributes from parent classes
   
   class Animal{
 
