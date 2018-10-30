@@ -1,5 +1,9 @@
 
 
+
+window.onload = function(){
+
+
 let calculateButton = document.getElementById('calc');
 
 calculateButton.onclick = function(){
@@ -75,3 +79,12 @@ let deleteButtons = document.getElementsByClassName('btn-delete');
 
 
     }
+
+
+
+
+
+
+
+
+  }// end window onload
