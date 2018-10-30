@@ -58,14 +58,14 @@ let deleteButtons = document.getElementsByClassName('btn-delete');
       newThing.className = "row";
 
       newThing.innerHTML = `
-              <span class="product-name">${newProductName}</span>
-              <span class="product-price">$${newProductPrice}</span>
-              <div>
+              <span class="col-3 product-name">${newProductName}</span>
+              <span class="col-2 product-price">$${newProductPrice}</span>
+              <div class="col-3">
                 <label>QTY</label>
                 <input class="the-quantity" type="number">
               </div>
-              <span class="product-total-price">$0.00</span>
-              <button class="btn btn-delete">Delete</button>
+              <span class="col-2 product-total-price">$0.00</span>
+              <button class="col-2 btn btn-danger">Delete</button>
       `
 
         document.getElementById('master-div').appendChild(newThing);
