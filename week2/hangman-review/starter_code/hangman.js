@@ -36,18 +36,34 @@ class Hangman{
 
 
       if(this.secretWord.includes(theGuess.key)){
+
+        let arrayOfIndexes = [];
+
         this.correctGuesses.push(theGuess.key);
+
+        for(let i=0; i<this.secretWord.length; i++){
+          if(this.secretWord[i]===theGuess.key){
+            arrayOfIndexes.push(i)
+          }
+        }
+
+
+        this.canvas.drawCorrectLetter(theGuess.key, arrayOfIndexes)
         this.checkWinner();
       }else{
         this.incorrectGuesses.push(theGuess.key);
         this.errorsLeft--;
+        this.canvas.drawWrongLetter(theGuess.key);
         this.checkGameOver();
+
       }
     }
 
     checkGameOver(){
       if(this.errorsLeft <1){
-        alert('you lose');
+        setTimeout(()=>{
+          alert('you lose');
+        },50)
       }
     }
 
@@ -56,7 +72,10 @@ class Hangman{
         return this.secretWord.split('').indexOf(letter) === i;
       })
       if(secretArray.sort().join('') === this.correctGuesses.sort().join('')){
+       
+        setTimeout(()=>{
         alert('you win');
+      },50);
       }
     }
 
@@ -69,6 +88,9 @@ class Hangman{
 
 document.getElementById('start-game-button').onclick = function () {
   theGame = new Hangman();
+   theGame.canvas = new GameAnimator();
+   theGame.canvas.wordToGuess = theGame.secretWord;
+   theGame.canvas.drawLines();
 };
 
 
