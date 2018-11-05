@@ -7,6 +7,7 @@ class Game{
   constructor(){
     this.ctx = document.getElementById('game-board').getContext('2d');
     this.obstacles = [];
+    this.car = new Car();
 
     setInterval(()=>{
       this.ctx.clearRect(0,0,600,750);
@@ -69,7 +70,6 @@ class Obstacle{
 
   function startGame() {
     theGame = new Game();
-    theGame.car = new Car();
  }
 
 
