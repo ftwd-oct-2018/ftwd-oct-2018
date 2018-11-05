@@ -98,14 +98,7 @@ class Car{
     
   }
 
-  breathe(){
-    console.log("yup, I'm breathing");
-  }
-
-  eat(howMuch){
-    this.kg += howMuch;
-    console.log('i am eating, my new weight is '+ this.kg)
-  }
+ 
 
 
 
