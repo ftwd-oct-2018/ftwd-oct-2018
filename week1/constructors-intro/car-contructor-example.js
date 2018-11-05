@@ -67,6 +67,7 @@ class Car{
   }
   
   let theAcura = new Car('Acura TL', 'navy', false);
+  // the keyword 'new' runs the constructor function of the class that comes after the word 'new'
   
   
   console.log(theAcura);
