@@ -112,7 +112,7 @@ class Car{
 }
 
 
-
+// extends is a keyword that tells one class to inherit from another
 class Dog extends Animal{
     constructor(theName, theAge, furColor, theWeight, howManyFeet){
     super(theName, theAge, theWeight)
