@@ -1,5 +1,6 @@
 let keysBeingPressed = [];
 let theGame;
+// give these 2 variables a global scoe so we can call them from anywhere
 
 
 
@@ -8,6 +9,7 @@ class Game{
     this.ctx = document.getElementById('game-board').getContext('2d');
     this.obstacles = [];
     this.car = new Car();
+    //create new car automatically when we create a new game
 
     setInterval(()=>{
       this.ctx.clearRect(0,0,600,750);
