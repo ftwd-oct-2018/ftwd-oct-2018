@@ -125,7 +125,7 @@ class Obstacle{
     }
 
     move(){
-      this.canMove(this.x, this.y)
+    
       
 
       if(keysBeingPressed.includes("ArrowUp")){
