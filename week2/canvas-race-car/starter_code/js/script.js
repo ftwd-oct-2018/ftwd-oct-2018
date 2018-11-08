@@ -30,9 +30,9 @@ class Game{
   }
 
   drawEverything(){
-    this.car.draw();
+    this.car.drawMyself();
     this.obstacles.forEach((obstacle)=>{
-      obstacle.draw();
+      obstacle.drawMyself();
     })
   }
 }
@@ -49,7 +49,7 @@ class Obstacle{
   }
 
 
-  draw(){ 
+  drawMyself(){ 
       this.ctx.fillRect(this.x, this.y, this.width, this.height);
   }
 
@@ -116,7 +116,7 @@ class Obstacle{
     }
 
 
-    draw(){
+    drawMyself(){
       let theImage = new Image();
       theImage.src = this.imgsrc;
       theImage.onload = ()=>{
