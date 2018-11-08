@@ -14,9 +14,11 @@ class Hangman{
   getWord(){
     let randomNumber = Math.floor(Math.random()*this.potentialWords.length);
     this.secretWord = this.potentialWords[randomNumber];
+    //take a random word from the array of words and select it as the secret word for this game
   }
 
   checkIfThisThingIsALetter(thisThing){
+    //in this function all we do is check to see if the thing is a letter or not and then return true or false
     if(thisThing.keyCode >= 65 && thisThing.keyCode <= 90){
       return true;
     }
@@ -24,6 +26,8 @@ class Hangman{
   }
 
     evaluateGuess(theGuess){
+      //here we call the checkifLetter function so we only end up running the rest of the function if it is actually a letter
+      // if its not a letter we call return and end the function early
       if(!this.checkIfThisThingIsALetter(theGuess)){
         console.log('not a letter');
         return;
@@ -46,6 +50,7 @@ class Hangman{
             arrayOfIndexes.push(i)
           }
         }
+        //this for loop is so that if the letter appears twice in the word, it will push it in twice instead of only once
 
 
         this.canvas.drawCorrectLetter(theGuess.key, arrayOfIndexes)
