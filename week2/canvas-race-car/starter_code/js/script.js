@@ -23,8 +23,8 @@ class Game{
   }
 
   spawnObstacle(){
-    let rando = Math.floor(Math.random()*20)
-    if(rando === 5){
+    let randomNumber = Math.floor(Math.random()*20)
+    if(randomNumber === 5){
       this.obstacles.push(new Obstacle())
     }
   }
