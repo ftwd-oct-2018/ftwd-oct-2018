@@ -7,6 +7,9 @@ const app = express();
 //when we run the file that we got from requiring express on line 1
 
 
+//  make sure you follow this same folder structure in the future.  App.js must be in
+// root directory with package.json
+
 
 app.use(express.static('public'));
 
