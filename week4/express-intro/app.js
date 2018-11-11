@@ -21,12 +21,15 @@ app.get('/', (req, res, next) => {
     <a href="/about">Go to about Page </a>
     `);
   });
+  // when using res.send, you have to write the entire html of the page as a string
+  // this is not a viable way to make a web app - can be useful for testing though
 
 
   app.get('/about', (req, res, next)=>{
     res.sendFile(__dirname + '/views/home-page.html');
   })
 
+  //sending a separate html file is a more scalable approach
 
 
 
