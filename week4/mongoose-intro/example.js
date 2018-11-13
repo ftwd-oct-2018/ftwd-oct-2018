@@ -18,7 +18,7 @@ mongoose.connect('mongodb://localhost/exampleApp');
 
 
 //4 you create an actual cat (but it only exists in memory (not saved in db))
-const theCat = new Cat({name: "Wellington Jr", })
+// const theCat = new Cat({name: "Wellington Jr", })
 
 
 //5 then you save the cat you just created
@@ -33,6 +33,18 @@ const theCat = new Cat({name: "Wellington Jr", })
     //     console.log(theErrorThing);
         
     // })
+
+
+    // instead of doing 2 separate steps by creating a cat instance and then
+    // doing theCat.save() you can do it all in one line of code like this
+
+        // Cat.create({name: "perrywinkle", age: 2, color: 'spotted'})
+        // .then((theCatObject)=>{
+        //     console.log(theCatObject);
+        // })
+        // .catch((err)=>{
+        //     console.log(err);
+        // })
 
 
 

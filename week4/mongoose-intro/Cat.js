@@ -9,7 +9,7 @@ const Schema   = mongoose.Schema;
 
 // you only need to do {type: string} if you are adding more rules like a default or minlength
 const catSchema = new Schema({
-    name : {type: String, minlength: 7},
+    name : {type: String, minlength: 7, unique: true, required: true},
     color: {type: String, default: "Brown"},
     age  : Number
   });
