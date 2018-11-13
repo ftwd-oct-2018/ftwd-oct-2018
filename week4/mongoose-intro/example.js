@@ -103,3 +103,35 @@ const theCat = new Cat({name: "Wellington Jr", age: 2 })
         // .catch((err)=>{
         //     console.log(err);
         // })
+
+
+
+
+        //updating/editing
+        // Cat.updateOne({name: "Pierre"}, {name: "Manolo"} )
+        // .then((blah)=>{
+        //     console.log(blah)
+        // })
+        // .catch((err)=>{
+        //     console.log(err);
+        // })
+
+
+        // Cat.findByIdAndUpdate("5beaf9e3cb309379b5adf008", {name: "Pierre"})
+        // .then((response)=>{
+        //     console.log(response);
+        // })
+        // .catch((err)=>{
+        //     console.log(err);
+        // })
+
+
+        //how to delete
+
+        // Cat.findByIdAndRemove('5beafe286dbd8e7ac1adae4d')
+        // .then((response)=>{
+        //     console.log(response)
+        // })
+        // .catch((err)=>{
+        //     console.log(err);
+        // })
