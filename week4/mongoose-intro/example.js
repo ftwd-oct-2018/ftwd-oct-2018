@@ -4,6 +4,11 @@
 //1 first you require mongoose
 const mongoose = require('mongoose');
 
+
+// import the cat model from the other file
+const Cat = require('./Cat');
+
+
 //2 then you connect to a specific databse with mongoose
 mongoose.connect('mongodb://localhost/exampleApp');
 // exampleApp is the name of the database
@@ -12,15 +17,8 @@ mongoose.connect('mongodb://localhost/exampleApp');
 
 
 
-//3 then you make the rules about what a cat is
-const catSchema =  { name: String };
-
-//3.1 you create the cat class using those rules
-const Cat = mongoose.model('Cat', catSchema);
-
-
 //4 you create an actual cat (but it only exists in memory (not saved in db))
-// const theCat = new Cat({name: "Napoleon"})
+const theCat = new Cat({name: "Wellington Jr", })
 
 
 //5 then you save the cat you just created
