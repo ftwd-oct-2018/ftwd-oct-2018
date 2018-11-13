@@ -18,7 +18,7 @@ mongoose.connect('mongodb://localhost/exampleApp');
 
 
 //4 you create an actual cat (but it only exists in memory (not saved in db))
-// const theCat = new Cat({name: "Wellington Jr", })
+const theCat = new Cat({name: "Wellington Jr", age: 2 })    
 
 
 //5 then you save the cat you just created
@@ -37,8 +37,9 @@ mongoose.connect('mongodb://localhost/exampleApp');
 
     // instead of doing 2 separate steps by creating a cat instance and then
     // doing theCat.save() you can do it all in one line of code like this
+    // also you can pass an array of object to .create and it will create all of them
 
-        // Cat.create({name: "perrywinkle", age: 2, color: 'spotted'})
+        // Cat.create([{name: "Batholomeau", age: 1, color: 'white'},{name: "RandyJohnson", age: 3, color: 'black'} ])
         // .then((theCatObject)=>{
         //     console.log(theCatObject);
         // })
@@ -47,11 +48,16 @@ mongoose.connect('mongodb://localhost/exampleApp');
         // })
 
 
+        
+
+
+
+
 
     // .find will always return an array, if you pass no argument, it will give you all the cats in the db
     // if you pass it a query, it will get all the cats that match the query EVEN IF THERE IS ONLY 1 SUCH CAT
 
-        // Cat.find({name: "Pierre"})
+        // Cat.find({}, {age: 1}, {sort:{age: -1}})
         // .then((allTheCats)=>{
 
         //     console.log(allTheCats);
@@ -60,6 +66,10 @@ mongoose.connect('mongodb://localhost/exampleApp');
         // .catch((err)=>{
         //     console.log(err);
         // })
+
+        // in find, first argument is your query (what youre trying to find)
+        //second argument is project (the info you wanna see about the cat)
+        // third argument is your sorting criteria
 
 
 
