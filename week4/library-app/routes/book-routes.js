@@ -47,7 +47,6 @@ router.get('/:theIdThing/edit', (req, res, next)=>{
         .then((allTheAuthors)=>{
 
            allTheAuthors.forEach((author)=>{
-               author.pictureUrl = ''
                 if(author._id.equals(theBook.author)){
                     author.yes = true;
                 }
