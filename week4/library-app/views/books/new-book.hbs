@@ -7,8 +7,22 @@
   <label for="">Title:</label>
   <input type="text" name="title">
 
+
+
+
+
   <label for="">Author:</label>
-  <input type="text" name="author">
+  <select name="author">
+
+   {{#each allTheAuthors}}
+    <option value="{{this._id}}">{{this.firstName}} {{this.lastName}}</option>
+   {{/each}}
+  </select>
+
+
+
+
+
 
   <label for="">Description:</label>
   <input type="text" name="description">

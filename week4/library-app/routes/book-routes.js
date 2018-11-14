@@ -1,11 +1,12 @@
 const express = require('express');
 const router  = express.Router();
 const Book    = require('../models/Book');
+const Author  = require('../models/Author');
 
 
 
 router.get('/', (req, res, next) => {
-    Book.find()
+    Book.find().populate('author')
     .then((allTheBooks)=>{
         res.render('books/books', {books: allTheBooks})
     })
@@ -16,7 +17,13 @@ router.get('/', (req, res, next) => {
 
 
 router.get('/new', (req, res, next) => {
-    res.render('books/new-book')
+    Author.find()
+    .then((allTheAuthors)=>{
+        res.render('books/new-book', {allTheAuthors})
+    })
+    .catch((err)=>{
+        next(err);
+    })
   });
 
 router.post('/create', (req, res, next)=>{
@@ -35,7 +42,30 @@ router.post('/create', (req, res, next)=>{
 router.get('/:theIdThing/edit', (req, res, next)=>{
     Book.findById(req.params.theIdThing)
     .then((theBook)=>{
-        res.render('books/edit', {theBook: theBook})
+
+        Author.find()
+        .then((allTheAuthors)=>{
+
+          let curated =  allTheAuthors.map((author)=>{
+
+                if(author._id.equals(theBook.author)){
+                    console.log('found a match!!!!!!!!!')
+                    author.correct = true;
+                    author.pictureUrl = ''  
+                    console.log(author)
+                }else {
+                    author.pictureUrl = ''
+                }
+            })
+            
+            
+            
+            console.log('--=-=-=-=-=-=-=-=-', allTheAuthors);
+            res.render('books/edit', {theBook: theBook, allTheAuthors: allTheAuthors})
+        })
+        .catch((err)=>{
+            next(err);
+        })
     })
     .catch((err)=>{
         next(err);
@@ -58,7 +88,7 @@ router.post('/:id/update', (req, res, next)=>{
 })
 
 router.get('/:id', (req, res, next)=>{
-    Book.findById(req.params.id)
+    Book.findById(req.params.id).populate('author')
     .then((theBook)=>{
         res.render('books/details', theBook)
         // here we pass in theBook which is an object, and has keys like

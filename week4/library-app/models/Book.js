@@ -7,7 +7,7 @@ const Schema   = mongoose.Schema;
 // you only need to do {type: string} if you are adding more rules like a default or minlength
 const bookSchema = new Schema({
     title: String,
-    author: String,
+    author: {type: Schema.Types.ObjectId, ref: 'Author'},
     description: String,
     rating: Number,
     image: String
