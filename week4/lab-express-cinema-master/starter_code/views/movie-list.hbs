@@ -1,0 +1,14 @@
+<h1>
+This is movie list
+</h1>
+
+
+{{#each movies}}
+    <div class="movie-card">
+        <img src="{{this.image}}" alt="super amazing movie poster">
+
+        <h6>{{this.title}}</h6>
+
+        <a href="/movies/{{this._id}}">See Details</a>
+    </div>
+{{/each}}
