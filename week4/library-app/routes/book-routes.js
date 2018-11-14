@@ -46,22 +46,18 @@ router.get('/:theIdThing/edit', (req, res, next)=>{
         Author.find()
         .then((allTheAuthors)=>{
 
-          let curated =  allTheAuthors.map((author)=>{
-
+           allTheAuthors.forEach((author)=>{
+               author.pictureUrl = ''
                 if(author._id.equals(theBook.author)){
-                    console.log('found a match!!!!!!!!!')
-                    author.correct = true;
-                    author.pictureUrl = ''  
-                    console.log(author)
-                }else {
-                    author.pictureUrl = ''
+                    author.yes = true;
                 }
             })
-            
-            
-            
-            console.log('--=-=-=-=-=-=-=-=-', allTheAuthors);
+         
+           console.log(allTheAuthors)
+       
             res.render('books/edit', {theBook: theBook, allTheAuthors: allTheAuthors})
+        
+        
         })
         .catch((err)=>{
             next(err);

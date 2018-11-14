@@ -10,10 +10,11 @@
  <label for="">Author:</label>
   <select name="author">
    {{#each allTheAuthors}}
-   {{!-- {{#if ../theBook.author === this._id}} --}}
-    {{!-- <option value="{{this._id}}">{{this.firstName}} {{this.lastName}} selected</option> --}}
-    {{!-- {{else}} --}}
-        {{!-- <option value="{{this._id}}">{{this.firstName}} {{this.lastName}} </option> --}}
+   {{#if this.yes}}
+    <option value="{{this._id}}" selected="selected">{{this.firstName}} {{this.lastName}} </option>
+    {{else}}
+        <option value="{{this._id}}">{{this.firstName}} {{this.lastName}} </option>
+   {{/if}}
    {{/each}}
   </select>
 
