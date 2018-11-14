@@ -8,7 +8,7 @@ const Author  = require('../models/Author');
 router.get('/', (req, res, next) => {
     Book.find().populate('author')
     .then((allTheBooks)=>{
-        res.render('books/books', {books: allTheBooks})
+        res.render('book-views/books', {books: allTheBooks})
     })
     .catch((err)=>{
         next(err);
@@ -19,7 +19,7 @@ router.get('/', (req, res, next) => {
 router.get('/new', (req, res, next) => {
     Author.find()
     .then((allTheAuthors)=>{
-        res.render('books/new-book', {allTheAuthors})
+        res.render('book-views/new-book', {allTheAuthors})
     })
     .catch((err)=>{
         next(err);
@@ -55,7 +55,7 @@ router.get('/:theIdThing/edit', (req, res, next)=>{
          
            console.log(allTheAuthors)
        
-            res.render('books/edit', {theBook: theBook, allTheAuthors: allTheAuthors})
+            res.render('book-views/edit', {theBook: theBook, allTheAuthors: allTheAuthors})
         
         
         })
@@ -86,7 +86,7 @@ router.post('/:id/update', (req, res, next)=>{
 router.get('/:id', (req, res, next)=>{
     Book.findById(req.params.id).populate('author')
     .then((theBook)=>{
-        res.render('books/details', theBook)
+        res.render('book-views/details', theBook)
         // here we pass in theBook which is an object, and has keys like
         // title description and author
         //therefore the variables we will have available in this view are
