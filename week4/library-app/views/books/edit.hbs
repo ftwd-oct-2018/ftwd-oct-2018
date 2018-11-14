@@ -1,0 +1,25 @@
+<h1>Edit {{theBook.title}}</h1>
+
+
+<form action="/books/{{theBook._id}}/update" method="POST">
+
+
+  <label for="">Title:</label>
+  <input type="text" name="title" value="{{theBook.title}}">
+
+  <label for="">Author:</label>
+  <input type="text" name="author" value="{{theBook.author}}">
+
+  <label for="">Description:</label>
+  <input type="text" name="description" value="{{theBook.description}}">
+
+  <label for="">Rate:</label>
+  <input type="number" name="rating" value="{{theBook.rating}}">
+
+    <label for="">Image Link:</label>
+  <input type="text" name="image" value="{{theBook.image}}">
+
+  <button type="submit">Save Changes</button>
+
+
+</form>
