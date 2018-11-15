@@ -12,6 +12,8 @@ router.get('/signup', (req, res, next) => {
 
 
 router.post('/signup', (req, res, next)=>{
+
+
     const theUserName = req.body.theUserName;
     const thePassWord = req.body.thePassWord;
 
@@ -48,6 +50,61 @@ router.post('/signup', (req, res, next)=>{
     });// end .then for User.findOne
 });
 
+
+
+router.get('/login', (req, res, next)=>{
+    res.render('login');
+});
+
+
+router.post("/login", (req, res, next) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+  
+    if (username === "" || password === "") {
+      res.render("login", {errorMessage: "Indicate a username and a password to sign up"});
+      return;
+    }
+  
+    User.findOne({username: username })
+    .then(user => {
+        if (!user) {
+          res.render("login", {errorMessage: "Sorry, that username doesn't exist"});
+          return;
+        }
+
+
+
+        if (bcrypt.compareSync(password, user.password)) {
+          // Save the login in the session!
+          req.session.currentUser = user;
+
+
+
+          res.redirect("/");
+        } else {
+          res.render("auth/login", {
+            errorMessage: "Incorrect password"
+          });
+        }
+
+    })
+    .catch(error => {
+      next(error)
+    })
+  });
+
+
+
+  router.get("/logout", (req, res, next) => {
+    req.session.destroy()
+    .then(()=>{
+      // cannot access session here
+      res.redirect("/login");
+    })
+    
+  });
 
 
 
