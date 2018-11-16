@@ -7,7 +7,8 @@ const userSchema = new Schema({
   profilePic: String, 
   firstName: String,
   lastName: String,
-  bio: String
+  bio: String,
+  admin: Boolean
 }, {
   timestamps: true
 });

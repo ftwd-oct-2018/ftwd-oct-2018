@@ -15,6 +15,11 @@ const passport      = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const flash         = require("connect-flash");
 
+const User          = require('./models/User');
+
+require('./config/passport');
+// this line brings in all the stuff from the passport.js file in the config folder
+
 mongoose.Promise = Promise;
 mongoose
   .connect('mongodb://localhost/library-app', {useMongoClient: true})
@@ -55,41 +60,8 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.locals.title = 'Express - Generated with IronGenerator';
 
 
-passport.serializeUser((user, cb) => {
-  cb(null, user._id);
-});
-// this function gets called everytime you write to req.user (edit req.user)
-
-
-passport.deserializeUser((id, cb) => {
-  User.findById(id, (err, user) => {
-    if (err) { return cb(err); }
-    cb(null, user);
-  });
-});
-// this funciton gets called everytime you call req.user to read it 
-
 app.use(flash());
 // activate the flash messages package
-
-
-passport.use(new LocalStrategy((username, password, next) => {
-  User.findOne({ username }, (err, user) => {
-    if (err) {
-      return next(err);
-    }
-    if (!user) {
-      return next(null, false, { message: "Incorrect username" });
-    }
-    if (!bcrypt.compareSync(password, user.password)) {
-      return next(null, false, { message: "Incorrect password" });
-    }
-
-    return next(null, user);
-  });
-}));
-// this local strategy is the function that gets call when you call passport.authenticate('local' in the route)
-
 
 
 app.use(session({
@@ -120,5 +92,8 @@ app.use('/books', bookRoutes);
 app.use('/', require('./routes/author-routes'));
 // here we do not use a prefix so we will have to repeat /author over and over in every route
 
+
+app.use('/', require('./routes/user-routes'));
+// no prefix here either
 
 module.exports = app;

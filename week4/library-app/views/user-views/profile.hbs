@@ -1,0 +1,26 @@
+<h1>Welcome to your DashBoard, {{user.firstName}} {{user.lastName}}</h1>
+
+
+
+<img src="{{user.profilePic}}">
+
+<div>
+<h6>Bio</h6>
+
+<p>
+    {{user.bio}}
+</p>
+
+</div>
+
+<h2>Books Donated by {{user.username}}</h2>
+        <ul>
+        {{#each books}}
+        <li>
+            <a href="/books/{{this._id}}">
+            {{this.title}}
+            </a>
+        </li>
+
+{{/each}}
+</ul>

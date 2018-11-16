@@ -10,7 +10,8 @@ const bookSchema = new Schema({
     author: {type: Schema.Types.ObjectId, ref: 'Author'},
     description: String,
     rating: Number,
-    image: String
+    image: String,
+    donor: {type: Schema.Types.ObjectId, ref: 'User'}
   });
 
 //3.1 you create the cat class using those rules

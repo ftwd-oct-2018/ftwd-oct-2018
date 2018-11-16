@@ -5,31 +5,47 @@ const Author  = require('../models/Author');
 
 
 
+
 router.get('/', (req, res, next) => {
-    Book.find().populate('author')
-    .then((allTheBooks)=>{
-        res.render('book-views/books', {books: allTheBooks})
-    })
-    .catch((err)=>{
-        next(err);
-    })
+    if(!req.user || !req.user.admin){
+        req.flash('error', 'page not available');
+        res.redirect('/login')
+        return;
+    } else{
+
+        Book.find().populate('author')
+        .then((allTheBooks)=>{
+            res.render('book-views/books', {books: allTheBooks})
+        })
+        .catch((err)=>{
+            next(err);
+        })
+    }
 });
 
 
 router.get('/new', (req, res, next) => {
-    Author.find()
-    .then((allTheAuthors)=>{
-        res.render('book-views/new-book', {allTheAuthors})
-    })
-    .catch((err)=>{
-        next(err);
-    })
+    if(!req.user) {
+        req.flash('error', 'sorry you must be logged in to donate a book')
+        res.redirect('/login');
+    } else{ 
+        Author.find()
+        .then((allTheAuthors)=>{
+            res.render('book-views/new-book', {allTheAuthors})
+        })
+        .catch((err)=>{
+            next(err);
+        })
+    }
   });
 
 router.post('/create', (req, res, next)=>{
 // instead of doing title: req.body.title and decription: req.body.description
 // we just take the entire req.body and make a book out of it
-    Book.create(req.body)
+    const newBook = req.body;
+    newBook.donor = req.user._id;
+    // since req.user is available in every route, its very easy to attach the current users id to any new thing youre creating or editing
+    Book.create(newBook)
     .then(()=>{
         res.redirect('/books');
     })
@@ -83,7 +99,7 @@ router.post('/:id/update', (req, res, next)=>{
 })
 
 router.get('/:id', (req, res, next)=>{
-    Book.findById(req.params.id).populate('author')
+    Book.findById(req.params.id).populate('author').populate('donor')
     .then((theBook)=>{
         res.render('book-views/details', theBook)
         // here we pass in theBook which is an object, and has keys like
