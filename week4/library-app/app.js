@@ -9,6 +9,11 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 
+const session       = require("express-session");
+const bcrypt        = require("bcryptjs");
+const passport      = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const flash         = require("connect-flash");
 
 mongoose.Promise = Promise;
 mongoose
@@ -48,6 +53,59 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
+
+
+passport.serializeUser((user, cb) => {
+  cb(null, user._id);
+});
+// this function gets called everytime you write to req.user (edit req.user)
+
+
+passport.deserializeUser((id, cb) => {
+  User.findById(id, (err, user) => {
+    if (err) { return cb(err); }
+    cb(null, user);
+  });
+});
+// this funciton gets called everytime you call req.user to read it 
+
+app.use(flash());
+// activate the flash messages package
+
+
+passport.use(new LocalStrategy((username, password, next) => {
+  User.findOne({ username }, (err, user) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return next(null, false, { message: "Incorrect username" });
+    }
+    if (!bcrypt.compareSync(password, user.password)) {
+      return next(null, false, { message: "Incorrect password" });
+    }
+
+    return next(null, user);
+  });
+}));
+// this local strategy is the function that gets call when you call passport.authenticate('local' in the route)
+
+
+
+app.use(session({
+  secret: "our-passport-local-strategy-app",
+  resave: true,
+  saveUninitialized: true
+}));
+// this block of code configures and activates a session in express
+
+app.use(passport.initialize());
+// this line 'turns on' the passport package
+app.use(passport.session());
+//this line connects passport to the session you created
+
+
+
 
 
 
