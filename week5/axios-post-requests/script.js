@@ -50,21 +50,21 @@ const debtFromHTML = $('#debt:checked').val()? true : false
 console.log(debtFromHTML)
 
 
-    // axios.post('https://ih-crud-api.herokuapp.com/characters', {
-    //     name: nameFromHTML,
-    //     occupation: occupationFromHTML, 
-    //     weapon: weaponFromHTML, 
-    //     debt: debtFromHTML
-    // })
+    axios.post('https://ih-crud-api.herokuapp.com/characters', {
+        name: nameFromHTML,
+        occupation: occupationFromHTML, 
+        weapon: weaponFromHTML, 
+        debt: debtFromHTML
+    })
 
-    // .then((result)=>{
-    //     console.log(result);
-    //     fetchAll();
-    //     // calling the other function to show the new character on the list after we add it to the api
-    // })
-    // .catch((err)=>{
-    //     console.log(err)
-    // })
+    .then((result)=>{
+        console.log(result);
+        fetchAll();
+        // calling the other function to show the new character on the list after we add it to the api
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
 
 
 })
