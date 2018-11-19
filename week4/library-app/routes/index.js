@@ -6,4 +6,12 @@ router.get('/', (req, res, next) => {
   res.render('index');
 });
 
+
+
+router.get('/axios', (req, res, next)=>{
+
+res.render('the-axios-page')
+
+})
+
 module.exports = router;

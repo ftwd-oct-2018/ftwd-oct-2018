@@ -96,4 +96,7 @@ app.use('/', require('./routes/author-routes'));
 app.use('/', require('./routes/user-routes'));
 // no prefix here either
 
+
+app.use('/', require('./routes/book-api-routes'));
+
 module.exports = app;
