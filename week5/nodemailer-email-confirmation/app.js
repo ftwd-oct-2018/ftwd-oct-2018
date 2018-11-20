@@ -83,6 +83,11 @@ passport.use(new LocalStrategy((username, password, next) => {
     if (!user) {
       return next(null, false, { message: "Incorrect username" });
     }
+
+    if (!user.confirmed) {
+      return next(null, false, { message: "you must confirm your email before continuing" });
+    }
+
     if (!bcrypt.compareSync(password, user.password)) {
       return next(null, false, { message: "Incorrect password" });
     }
