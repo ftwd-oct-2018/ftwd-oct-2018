@@ -1,0 +1,29 @@
+{{!-- in this file, how do we make it easy for the user to submit a post request? --}}
+{{!--  how do we control the post request? --}}
+
+<form action="/newtask" method="POST">
+    {{!-- by putting method = post we have made it so that as soon as the user clicks the button at the bottom --}}
+    {{!-- it will submit a post request to whichever url we put in the action property --}}
+
+
+
+    <label for="">Title</label>
+    <input type="text" name="title">
+    {{!-- each input controls what info the user is allowed inside the post request  --}}
+    {{!-- the name attribute adds the info into req.body and the name of the key in re.body will be whatever the name is --}}
+
+
+
+    <label>Content</label>
+    <input type="text" name="content">
+
+
+
+    <button>Submit</button>
+    {{!-- just by having a button inside a form, the form will automatically submit when you click it --}}
+    {{!--  when the form submits, it will make whatever type of request you put in the method --}}
+    {{!-- and the request will be sent to whichever url you put in the action --}}
+
+
+
+</form>

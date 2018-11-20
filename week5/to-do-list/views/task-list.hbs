@@ -1,0 +1,16 @@
+
+{{#each list}}
+
+<h3>{{this.title}}</h3>
+
+<p>{{this.content}}</p>
+
+<span>Finished?</span> 
+{{#if this.doneyet}}
+     <span>Yes, Finished</span>
+{{else}}
+<span>No, Not Finished</span>
+{{/if}}
+
+
+{{/each}}

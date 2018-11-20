@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{title}}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    
+    <a href="/register">Sign Up</a>
+    <a href="/tasks">task list</a>
+
+
+{{!-- since we have theUser variable available in every page, we can use it here to figure out if someones logged in --}}
+{{!-- if theyre logged in we show them the logout button, else, we show the login link --}}
+  {{#if theUser}}
+    <a href="/logout"> Log Out</a>
+  {{else}}
+    <a href="/login">Log In</a>
+  {{/if}}
+
+
+    {{{body}}}
+
+    <script src='/javascripts/script.js'></script>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<h2>Signup</h2>
+
+
+<form action="/signup" method ="POST" enctype="multipart/form-data">
+
+<label>Username</label>
+<input type="text" name="username">
+
+<label>Password</label>
+<input type="password" name="password">
+
+<label>Bio</label>
+<textarea name="bio" cols="30" rows="10"></textarea>
+
+
+<input type="file" name="the-picture">
+{{!-- the name of this input is what i need to pass into the cloudinary middleware thingy in the route --}}
+
+
+<button>Submit</button>
+</form>
