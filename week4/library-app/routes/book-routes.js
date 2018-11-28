@@ -29,6 +29,10 @@ router.get('/new', (req, res, next) => {
         req.flash('error', 'sorry you must be logged in to donate a book')
         res.redirect('/login');
     } else{ 
+// why are we doing Author.find in the new book route?
+// because in order to create a new book, we wanna have a dropdown to select the author
+// well that dropdown is a list of all the authors, in order to show a list of all the authors
+// we have to get all the authors from the database first        
         Author.find()
         .then((allTheAuthors)=>{
             res.render('book-views/new-book', {allTheAuthors})
