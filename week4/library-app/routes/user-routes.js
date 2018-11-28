@@ -25,7 +25,8 @@ router.post('/register', (req, res, next)=>{
 
             const salt = bcrypt.genSaltSync(10);
             const theHash = bcrypt.hashSync(req.body.thePassword, salt);
-
+// create the user and bring in all info the user filled into the form
+// set admin to false because we dont want to give people the ability to sign up as admins
             User.create({
                 username: req.body.theUsername,
                 password: theHash,
