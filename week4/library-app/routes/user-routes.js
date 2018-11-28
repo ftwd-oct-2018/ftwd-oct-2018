@@ -10,6 +10,8 @@ const Book     = require('../models/Book');
 router.get('/signup', (req, res, next)=>{
     res.render('user-views/signup-view', {message: req.flash('error')});
 });
+// just rendering a plain form for signing up and also passing in a variable called message equal to whatever is inside req.flash at this moment
+// if there is nothing in req.flash, message will be undefined, which is why we put it inside an if statement in the hbs file
 
 router.post('/register', (req, res, next)=>{
      User.findOne({username: req.body.username})
@@ -87,8 +89,12 @@ router.post("/login", passport.authenticate("local", {
       })
       .catch((err)=>{
         next(err);
+    
       })
+    
   })
 
 
 module.exports = router;
+
+
