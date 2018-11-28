@@ -66,7 +66,8 @@ router.post('/create', (req, res, next)=>{
 router.get('/:theIdThing/edit', (req, res, next)=>{
     Book.findById(req.params.theIdThing)
     .then((theBook)=>{
-
+// we have to find all the authors before rendering the page because we need to show a list of all the authors
+// inside a dropdown so the user can change which author the book was written byg
         Author.find()
         .then((allTheAuthors)=>{
 
@@ -75,7 +76,9 @@ router.get('/:theIdThing/edit', (req, res, next)=>{
                     author.yes = true;
                 }
             })
-         
+            // here, we loop through all the authors, and we add a key/value pair to whichever one is the actual authro fthe book
+            // this way, when we loop through all the authors, one of them will have .yes on them
+            // doesnt really matter what we call this new key .yes is a random example     
            console.log(allTheAuthors)
        
             res.render('book-views/edit', {theBook: theBook, allTheAuthors: allTheAuthors})
