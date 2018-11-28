@@ -47,8 +47,12 @@ router.post('/create', (req, res, next)=>{
 // instead of doing title: req.body.title and decription: req.body.description
 // we just take the entire req.body and make a book out of it
     const newBook = req.body;
+    // create an object equal to req.body
     newBook.donor = req.user._id;
+    // we are adding another key/value pair to this object
     // since req.user is available in every route, its very easy to attach the current users id to any new thing youre creating or editing
+    // remember, book.create takes an object as an argument, the object should have keys like author and title and 
+    // so we pass our newBook object, which does in fact have keys like author and title
     Book.create(newBook)
     .then(()=>{
         res.redirect('/books');
