@@ -38,6 +38,8 @@ router.post('/register', (req, res, next)=>{
             })
             .then((theUser)=>{
                 req.login(theUser, (err) => {
+                    // req.login is a passport method that allows you to log someone in with one line of code
+                    // it is a method that takes an argument and the argument should be an object equal to the user you want to log in and save into the session
                     if (err) {
                         req.flash('error', 'something went wrong with auto login, please log in manually')
                         res.redirect('/login')
@@ -75,7 +77,7 @@ router.post("/login", passport.authenticate("local", {
   //defined in app.js
 
 
-  router.get('/logout', (req, res, next)=>{
+  router.post('/logout', (req, res, next)=>{
       req.logout()
       res.redirect('/');
   })
