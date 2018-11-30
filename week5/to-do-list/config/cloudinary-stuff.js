@@ -19,4 +19,6 @@ var storage = cloudinaryStorage({
 
 const uploadCloud = multer({ storage: storage });
 
+// we export all the configurations that we just set in the file
+
 module.exports = uploadCloud;
