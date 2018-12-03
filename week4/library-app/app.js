@@ -22,7 +22,7 @@ require('./config/passport');
 
 mongoose.Promise = Promise;
 mongoose
-  .connect('mongodb://localhost/library-app', {useMongoClient: true})
+  .connect("skjvb", {useMongoClient: true})
   .then(() => {
     console.log('Connected to Mongo!')
   }).catch(err => {
