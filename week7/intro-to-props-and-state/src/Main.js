@@ -16,7 +16,7 @@ class Main extends Component{
     }
 
 
-    changeUsername(newUserName){
+    changeUsername = (newUserName)=>{
         this.setState({username: newUserName})
     }
 
@@ -29,7 +29,7 @@ class Main extends Component{
               <Example
                theUserName = {this.state.username}
                 thePassword={this.state.password}
-                changeUserNameInParentComponent = {this.changeUsername.bind(this)}
+                changeUserNameInParentComponent = {this.changeUsername}
                  />
       
             </div>
