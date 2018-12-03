@@ -2,22 +2,15 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { AsyncParallelBailHook } from 'tapable';
+import Animals from './Animals';
 
 class App extends Component {
 
   render() {
     const theWord = "Ironhack"
 
-    const randomAnimals = ['Alligator', 'guinea pig','wallabee', 'rooster' ]
 
-    const theDiv = 
-    (
-    <ul>
-   { randomAnimals.map((oneAnimal)=>{
-      return <li> {oneAnimal} </li>
-    })  }
-    </ul>
-    )
+  
     // map function is the standard way of looping through an array to show stuff on the page
 
 
@@ -65,7 +58,7 @@ class App extends Component {
         <h3> This app was made at {theWord} </h3>
         {/* interpolation in jsx  */}
 
-        {theDiv}
+      
 
 
 
@@ -78,6 +71,7 @@ class App extends Component {
 
 
 
+      <Animals />
 
  
       </div>
