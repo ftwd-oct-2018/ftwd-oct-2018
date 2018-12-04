@@ -22,6 +22,8 @@ class Example extends Component {
             <h2> Your password is:{this.props.thePassword}</h2>
 
 
+
+
             <button onClick = {() => {this.props.changeUserNameInParentComponent('uncoolBoy78')}} > 
             Click me to change to coolgirl77
             </button>
