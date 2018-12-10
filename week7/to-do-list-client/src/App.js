@@ -17,12 +17,15 @@ class App extends Component {
   service = new UserService()
 
 
+  componentDidMount(props){
+    this.fetchUser()
+  }
 
+ 
 
 
     fetchUser(){
-      console.log('trying to see whos logged in')
-      if( this.state.loggedInUser === null ){
+      // if( this.state.loggedInUser === null ){
         this.service.loggedin()
         .then(theActualUserFromDB =>{
           this.setState({
@@ -31,17 +34,19 @@ class App extends Component {
 
         })
         .catch( err =>{
+          console.log('catch getting hit')
           this.setState({
             loggedInUser:  false
           }) 
         })
-      }
+      // }
     }
 
 
 
     logInTheUser = (userToLogIn) => {
-      this.setState({logInTheUser: userToLogIn})
+     
+      this.setState({loggedInUser: userToLogIn})
     }
 
 
@@ -64,7 +69,7 @@ class App extends Component {
 
 
   render() {
-    {this.fetchUser()}
+    // {this.fetchUser()}
     console.log(this.state)
     return (
       <div>
@@ -85,6 +90,7 @@ class App extends Component {
 
         <Switch>
           <Route path="/project-index" render={(props) => <ProjectIndex {...props} currentUser={this.state.loggedInUser} /> } />
+                                                      {/* by passing this.state.loggedInUser, anytime the user in app component changes, itll change in this component too */}
           <Route path="/project/:id" component = {SingleProject} />
           {/*                     |      */}
           {/*                     -------------------------------------------------------------------------------------------         */}
