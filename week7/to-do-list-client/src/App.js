@@ -17,8 +17,12 @@ class App extends Component {
       </nav>
 
 
+{/* // if you need to pass props to a component you are rendering inside a route, you must use render instead of component={} */}
+{/* // furthermore, if you do this, you must pass in {...this.props} in order to have access to this.props.history and this.props.match.params */}
+
+
         <Switch>
-          <Route path="/project-index" component = {ProjectIndex} />
+          <Route path="/project-index" render={(props) => <ProjectIndex {...props}  blah="whatever" /> } />
           <Route path="/project/:id" component = {SingleProject} />
           {/*                     |      */}
           {/*                     -------------------------------------------------------------------------------------------         */}

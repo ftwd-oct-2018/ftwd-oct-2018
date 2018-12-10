@@ -3,6 +3,8 @@ import "../App.css";
 import Axios from 'axios';
 import {Link} from 'react-router-dom';
 
+import AddNewProject from './AddNewProject';
+
 
 class ProjectIndex extends Component{
     state={
@@ -21,14 +23,19 @@ class ProjectIndex extends Component{
 // the response we ge back should be equal to an object with a .data key inside it, and that .data will be equal to all the tasks from our API
 
     componentWillMount(){
+       this.fetchProjects()
+    }
+
+
+    fetchProjects = () =>{
         Axios.get('http://localhost:5000/api/tasks')
         .then((responseFromApi)=>{
-            this.setState({allTheProjects: responseFromApi.data})
+            this.setState({allTheProjects: responseFromApi.data.reverse()}) 
+            // .reverse is just so we see the newest tasks at the top of the page
             // once we get all the tasks, we set the state so that the state will have all the tasks in there
         })
         .catch((err)=>{
         })
-
     }
 
 
@@ -47,7 +54,6 @@ class ProjectIndex extends Component{
                 </div>
             )
         })
-        
         }
     }
 
@@ -58,7 +64,19 @@ class ProjectIndex extends Component{
         return(
             <div>
             <h1>Project Index</h1>
+
+            <div className="list-of-projects-container">
             {this.showAllProjects()}
+            </div>
+
+
+            <div className="add-new-component-container">
+            <AddNewProject letTheIndexComponentKnowThatWeAddedAProject = {this.fetchProjects} />
+            {/* we pass in this function so that after we add a new project in the addNewProject component */}
+            {/* that component will be able to tell this component to go check for new projects */}
+            </div>
+
+
             </div>
         )
     }
