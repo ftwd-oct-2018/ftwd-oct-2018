@@ -22,8 +22,11 @@ class AddNewProject extends Component {
         const newDescription = this.state.descriptionInput;
         // grab the values from the DOM
 
+        // gotta send withCredentials: true as a header because
+        // the route we are posting to uses req.user which is by default protected by express
         Axios.post("http://localhost:5000/api/tasks/add-new",
-         {theTitle: newTitle, theDescription: newDescription})
+         {theTitle: newTitle, theDescription: newDescription},
+         {withCredentials: true})
          .then((responeFromOurAPI)=>{
             console.log('success', responeFromOurAPI)
 

@@ -5,7 +5,8 @@ const Schema   = mongoose.Schema;
 
 const taskSchema = new Schema({
     title: String,
-    description: String
+    description: String,
+    owner: {type: Schema.Types.ObjectId, ref: 'User'}
 })
 
 

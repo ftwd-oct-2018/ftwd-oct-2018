@@ -42,10 +42,14 @@ class ProjectIndex extends Component{
     // because componentWillMount will still allow the component to intialize before running, we can protect ourselves
     // by putting an if statement before anytime we want to loop through something in our state
     showAllProjects = () => {
-        if(this.state.allTheProjects){
+        if(this.state.allTheProjects && this.props.currentUser){
+
+            const myProjects = this.state.allTheProjects.filter((eachProject)=>{
+                return eachProject.owner === this.props.currentUser._id
+            })
 
             // once we have all the tasks in the state, we can map through them as we normally do
-            return this.state.allTheProjects.map((eachProject)=>{
+            return myProjects.map((eachProject)=>{
                 return(
                     <div key={eachProject._id}>
                     <h3>{eachProject.title}</h3>
@@ -60,7 +64,8 @@ class ProjectIndex extends Component{
 
 
     render(){
-        console.log('~~~~~~~~~~~~~~~~~~~~',this.state);
+        console.log(this.props)
+      
         return(
             <div>
             <h1>Project Index</h1>

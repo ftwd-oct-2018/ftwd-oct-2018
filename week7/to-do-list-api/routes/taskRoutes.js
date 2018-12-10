@@ -53,7 +53,8 @@ router.post('/tasks/add-new', (req, res, next)=>{
         // and we all will need to make sure when when we send this request from our react app that the user is able to send
         // 2 things in the body of the request, they need to be called theTitle and theDescription
         // this will be done with axios
-        description: req.body.theDescription
+        description: req.body.theDescription,
+        owner: req.user._id
     })
     .then((response)=>{
         res.json(response);
