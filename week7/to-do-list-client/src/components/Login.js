@@ -21,9 +21,9 @@ class Login extends Component {
         this.userService.login(this.state.usernameInput, this.state.passwordInput)
         .then((userFromDB)=>{
             // here we wait for the API to give us the user object back after logging in
-            // then we pass that user object back to app component
             this.setState({usernameInput: '', passwordInput: ''})
             
+            // then we pass that user object back to app component
             this.props.logTheUserIntoAppComponent(userFromDB)
             // here, we are getting the user object from the DB
             // and we're setting AppComponent.state.loggedinuser equal to it
