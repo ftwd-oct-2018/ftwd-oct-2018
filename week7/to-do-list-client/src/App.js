@@ -17,7 +17,7 @@ class App extends Component {
   service = new UserService()
 
 
-  componentDidMount(props){
+  componentDidMount(){
     this.fetchUser()
   }
 
@@ -74,7 +74,7 @@ class App extends Component {
     return (
       <div>
       {this.showUser()}
-      <h1>We're Still Here</h1>
+      <h1>Were Still Here</h1>
 
       <nav> 
         <Link to="/project-index"> View Projects</Link>
